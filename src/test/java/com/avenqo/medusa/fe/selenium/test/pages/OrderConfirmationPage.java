@@ -130,7 +130,4 @@ public class OrderConfirmationPage {
 		LOG.info(RETURNING, s);
 		return s;
 	}
-
-	
-
 }

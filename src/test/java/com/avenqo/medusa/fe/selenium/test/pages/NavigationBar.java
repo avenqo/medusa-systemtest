@@ -35,7 +35,7 @@ public class NavigationBar {
 	}
 
 	public void waitUntilBagIsContainingItems(int itemSize) {
-		LOG.info("");
+		LOG.info("itemSize: [{}]");
 
 		new WebDriverWait(driver, Duration.ofSeconds(10))
 			.until(i -> getNumberOfArticlesInBasket() == itemSize);

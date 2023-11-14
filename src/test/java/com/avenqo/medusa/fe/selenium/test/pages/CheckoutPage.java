@@ -49,13 +49,13 @@ public class CheckoutPage {
 	}
 
 	public void enterMinimalAddressAndContinue(Customer customer) {
-		LOG.info("");
+		LOG.info("Customer [" + customer.toString() + "]");
 		this.enterMinimalAddress(customer);
 		driver.findElement(BY_BTN_DELIVERY).click();
 	}
 
 	public void selectDeliveryService(String service) {
-		LOG.info("");
+		LOG.info("Service: [{}]", service);
 		WebElement selection = driver.findElement(BY_SELECTION_DELIVERY);
 		
 		if (service.toLowerCase().contains("standard")) 

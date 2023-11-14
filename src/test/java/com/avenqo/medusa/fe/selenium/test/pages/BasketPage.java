@@ -19,12 +19,12 @@ public class BasketPage {
 	private final WebDriver driver = WebDriverProvider.getDriver();
 	
 	private static final By BY_LINK_CHECKOUT = By.cssSelector("a[href='/checkout']");
-	
+	private static final By BY_CONTAINER = By.className("content-container");
 	
 	public void checkout() {
 		LOG.info("");
 		//click title to close hoovered frame
-		driver.findElement(By.className("content-container")).click();
+		driver.findElement(BY_CONTAINER).click();
 		
 		driver.findElement(BY_LINK_CHECKOUT).click();
 	}

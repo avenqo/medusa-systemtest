@@ -21,7 +21,7 @@ public class LandingPage {
 
 	public void selectProductByName(String productName) {
 
-		LOG.info(String.format("productName (%s)", productName));
+		LOG.info("productName: [{}]", productName);
 
 		List<WebElement> productLinks = driver.findElements(By.cssSelector("a[href^='/products/']"));
 		assertTrue(productLinks != null);
@@ -41,12 +41,5 @@ public class LandingPage {
 
 		assertNotNull(matchingLink, "Product name '" + productName + "' not found.");
 		matchingLink.click();
-
-		/*
-		 * productLinks.stream() .filter(link -> productName.equals(
-		 * link.findElement(By.tagName("span")).getText()))
-		 * .collect(Collectors.toList());
-		 */
 	}
-
 }

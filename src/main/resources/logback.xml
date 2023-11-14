@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- Appender für Steps -->
+
+	<appender name="CONSOLE_STEPS"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>=== STEP === : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CONSOLE_PAGE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>---- PAGE -- : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="CONSOLE_STD"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type
+		ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>!!! NO LOGGER APPENDER ASSIGNED !!! : %d{HH:mm:ss.SSS} [%thread] %-5level  %logger{40}.[%M] -
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- Connecting loggers and appenders, defining log levels -->
+
+	<logger name="com.avenqo.medusa.fe.selenium" level="WARN" />
+
+	<logger name="com.avenqo.medusa.fe.selenium.test.steps" level="DEBUG">
+		<appender-ref ref="CONSOLE_STEPS" />
+	</logger>
+	<logger name="com.avenqo.medusa.fe.selenium.test.pages" level="DEBUG">
+		<appender-ref ref="CONSOLE_PAGE" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

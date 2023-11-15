@@ -40,3 +40,10 @@ t.b.d
 ### Data
 t.b.d
 
+## Others
+### Logging
+
+The Logging is configured via config file 
+
+src/main/resources/logback.xml.
+

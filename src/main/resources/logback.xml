@@ -6,15 +6,23 @@
 	<appender name="CONSOLE_STEPS"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>=== STEP === : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
+			<pattern>STEP : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
 
-	<appender name="CONSOLE_PAGE"
+	<appender name="CONSOLE_PAGES"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>---- PAGE -- : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
+			<pattern>>>PAGE : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="CONSOLE_ELEMENTS"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>....ELEMENT -- : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
@@ -38,9 +46,11 @@
 		<appender-ref ref="CONSOLE_STEPS" />
 	</logger>
 	<logger name="com.avenqo.medusa.fe.selenium.test.pages" level="DEBUG">
-		<appender-ref ref="CONSOLE_PAGE" />
+		<appender-ref ref="CONSOLE_PAGES" />
 	</logger>
-
+	<logger name="com.avenqo.medusa.fe.selenium.test.elements" level="DEBUG">
+		<appender-ref ref="CONSOLE_ELEMENTS" />
+	</logger>
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 	</root>

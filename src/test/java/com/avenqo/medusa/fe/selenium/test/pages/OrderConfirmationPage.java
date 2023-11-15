@@ -17,11 +17,10 @@ import org.slf4j.Logger;
 import com.avenqo.medusa.fe.selenium.test.data.DeliveryAddress;
 import com.avenqo.medusa.fe.selenium.test.util.WebDriverProvider;
 
-public class OrderConfirmationPage {
+public class OrderConfirmationPage extends BasePage{
 
 	static final Logger LOG = getLogger(lookup().lookupClass());
-	private final WebDriver driver = WebDriverProvider.getDriver();
-
+	
 	private static final By BY_CONFIRMATION_MSG = By
 			.xpath("//span[text()='Thank you, your order was successfully placed']");
 	// private static final By BY_CUSTOMER = By.cssSelector("div.my-2 > div >
@@ -53,25 +52,22 @@ public class OrderConfirmationPage {
 	public void waitUntilVisible() {
 		LOG.info("");
 
-		new WebDriverWait(driver, Duration.ofSeconds(5))
-				.until(ExpectedConditions.presenceOfElementLocated(BY_CONFIRMATION_MSG));
-
-		new WebDriverWait(driver, Duration.ofSeconds(3))
-				.until(ExpectedConditions.visibilityOf(driver.findElement(BY_CONFIRMATION_MSG)));
+		we.waitUntilPresence(BY_CONFIRMATION_MSG, 5);
+		we.waitUntilVisible(BY_CONFIRMATION_MSG, 3);
 	}
 
 	public DeliveryAddress getDeliveryAddress() {
 		LOG.info("");
 		DeliveryAddress deliveryAddress = new DeliveryAddress();
 
-		List<WebElement> spans = driver.findElements(BY_CUSTOMER);
+		List<WebElement> spans = we.findElements(BY_CUSTOMER);
 
 		deliveryAddress.setName(spans.get(0).getText());
 		deliveryAddress.setAddress(spans.get(1).getText());
 		deliveryAddress.setCityCode(spans.get(2).getText());
 		deliveryAddress.setCountry(spans.get(3).getText());
 
-		deliveryAddress.setDeliveryMethod(driver.findElement(BY_DELIVERY).getText());
+		deliveryAddress.setDeliveryMethod(we.find(BY_DELIVERY).getText());
 
 		return deliveryAddress;
 	}
@@ -79,27 +75,27 @@ public class OrderConfirmationPage {
 	// overview
 	
 	public String getArticle() {
-		String s = driver.findElement(BY_PROD_NAME).getText();
+		String s = we.find(BY_PROD_NAME).getText();
 		LOG.info(RETURNING, s);
 		return s;
 	}
 
 	public String getVariant() {
-		String s = driver.findElement(BY_PROD_SIZE).getText();
+		String s = we.find(BY_PROD_SIZE).getText();
 		s = s.substring(s.indexOf(":") + 1).trim();
 		LOG.info(RETURNING, s);
 		return s;
 	}
 
 	public String getCount() {
-		String s = driver.findElement(BY_PROD_QUANTITY).getText();
+		String s = we.find(BY_PROD_QUANTITY).getText();
 		s = s.substring(s.indexOf(":") + 1).trim();
 		LOG.info(RETURNING, s);
 		return s;
 	}
 
 	public String getPrice() {
-		String s = driver.findElement(BY_PROD_PRICE).getText();
+		String s = we.find(BY_PROD_PRICE).getText();
 		LOG.info(RETURNING, s);
 		return s;
 	}
@@ -107,25 +103,25 @@ public class OrderConfirmationPage {
 	// summary
 
 	public String getTotal() {
-		String s = driver.findElement(BY_SUM_TOTAL).getText();
+		String s = we.find(BY_SUM_TOTAL).getText();
 		LOG.info(RETURNING, s);
 		return s;
 	}
 
 	public String getSubtotal() {
-		String s = driver.findElement(BY_SUM_SUBTOTAL).getText();
+		String s = we.find(BY_SUM_SUBTOTAL).getText();
 		LOG.info(RETURNING, s);
 		return s;
 	}
 
 	public String getDeliveryPrice() {
-		String s = driver.findElement(BY_SUM_DELIVERY).getText();
+		String s = we.find(BY_SUM_DELIVERY).getText();
 		LOG.info(RETURNING, s);
 		return s;
 	}
 
 	public String getOrderId() {
-		String s = driver.findElement(BY_ORDERID).getText();
+		String s = we.find(BY_ORDERID).getText();
 		assertNotNull(s);
 		LOG.info(RETURNING, s);
 		return s;

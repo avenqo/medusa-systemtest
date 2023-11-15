@@ -33,5 +33,4 @@ public class ProductDetailsPage {
 		new WebDriverWait(driver, Duration.ofSeconds(10))
 				.until(ExpectedConditions.presenceOfElementLocated(BY_PRODUCTINFO));
 	}
-
 }

@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -44,26 +45,37 @@ public class WE {
 		return driver.findElement(by);
 	}
 	
+	/*
 	public WebDriverWait getWait() {
 		return getWait( null);
 	}
 	
 	public WebDriverWait getWait(Integer timeout_ms) {
 		return new WebDriverWait(driver, Duration.ofMillis(timeout_ms == null ? DEFAULT_TIMEOUT_MS : timeout_ms));
-	}
+	}*/
 	
 	/**
 	 * @param <T> You can use both By or WebElement
 	 * @param elementAttr
 	 */
 	public <T> void waitUntilVisible(T elementAttr) {
-		LOG.info("WebElement: {}", elementAttr);
+		LOG.info("WebElement: {}, using default timeout", elementAttr);
 		waitUntilVisible(elementAttr, DEFAULT_TIMEOUT_MS);
     }
   
+	public WebDriverWait createWebDriverWaitSec(int timeout_sec) {
+		LOG.debug("timeout_sec: {}", timeout_sec);
+		return new WebDriverWait(driver, Duration.ofSeconds(timeout_sec));	
+	}
+	
+	public WebDriverWait createWebDriverWaitMs(int timeout_ms) {
+		LOG.debug("timeout_ms: {}", timeout_ms);
+		return new WebDriverWait(driver, Duration.ofMillis(timeout_ms));	
+	}
+	
 	public <T> void waitUntilVisible(T elementAttr, int timeout_ms) {
-		LOG.info("WebElement: {}", elementAttr);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout_ms));
+		LOG.info("WebElement: {}, timeout_ms: {}", elementAttr);
+		WebDriverWait wait = createWebDriverWaitMs(timeout_ms);
 		
         if (isBy(elementAttr)) {
             wait.until(ExpectedConditions.visibilityOfElementLocated((By) elementAttr));
@@ -163,5 +175,32 @@ public class WE {
 		throw new RuntimeException(
 				"Don't know how to handle element of type [" + elementAttr.getClass().getName() + "].");
     }
+
+	public WebDriver getDriver() {
+		return driver;
+	}
+
+	public void waitSomeTime(int time_ms) {
+		try {
+			Thread.sleep(time_ms);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void clickWithOffset(By by, int dx, int dy) {
+		Actions actions = new Actions(driver);
+		WebElement element = find(by);
+		actions.moveToElement(element)
+			.moveByOffset(dx, dy)
+			.click()
+			.build().perform();
+	}
+	
+	public void hoover(WebElement element) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).build().perform();;
+	}
+	
 
 }

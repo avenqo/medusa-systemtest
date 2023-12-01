@@ -15,7 +15,10 @@ public class TestDataProvider {
 
 	private static TestDataProvider testDataProvider;
 
-	private TestDataProvider() {}
+	private TestDataProvider() {
+		currentCustomer = new Customer();
+		currentOrder = new Order();
+	}
 
 	public static TestDataProvider get() {
 		if (testDataProvider == null)

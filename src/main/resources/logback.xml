@@ -6,7 +6,7 @@
 	<appender name="CONSOLE_STEPS"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>STEP : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
+			<pattern>STEP : %d{HH:mm:ss.SSS} %-5level %logger{0}.[%M] - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
@@ -14,7 +14,7 @@
 	<appender name="CONSOLE_PAGES"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>>>PAGE : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
+			<pattern>>>PAGE : %d{HH:mm:ss.SSS} %-5level %logger{0}.[%M] - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
@@ -22,7 +22,7 @@
 	<appender name="CONSOLE_ELEMENTS"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>....ELEMENT -- : %d{HH:mm:ss.SSS} %-5level STEP %logger{0}.[%M] - %msg%n
+			<pattern>....ELEMENT : %d{HH:mm:ss.SSS} %-5level %logger{0}.[%M] - %msg%n
 			</pattern>
 		</encoder>
 	</appender>

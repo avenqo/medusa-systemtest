@@ -10,6 +10,7 @@ public class PropertyProvider {
 
 	private static final String KEY_DRIVER = "driver";
 	private static final String KEY_ENVIRONMENT = "environment";
+	private static final String URL_AUT = "AUT_URL";
 
 	private static final String DRIVER_CHROME = "chrome";
 	private static final String DRIVER_FIREFOX = "firefox";
@@ -18,6 +19,7 @@ public class PropertyProvider {
 
 	private static final String ENV_LOCAL= "local";
 	private static final String ENV_REMOTE = "remote";
+
 
 	private String getProperty(String key) throws IOException {
 		Properties properties = new Properties();
@@ -62,5 +64,20 @@ public class PropertyProvider {
 					String.format("Failed to load properties for key '%s' in '%s'", KEY_DRIVER, CONFIG), e);
 		}
 		throw new RuntimeException(String.format("Missing key '%s' in '%s'", KEY_DRIVER, CONFIG));
+	}
+	
+	// TODO: make it simple!
+	public String getAutUrlAsString() {
+
+		try {
+			String urlAut = this.getProperty(URL_AUT);
+			if (urlAut == null || urlAut.length() <= 0) {
+				throw new RuntimeException(String.format("Missing URL for Application Under Test, key '%s' in '%s'", KEY_DRIVER, CONFIG));
+			}
+			return urlAut;
+		} catch (IOException e) {
+			throw new RuntimeException(
+					String.format("Failed to load properties for key '%s' in '%s'", KEY_DRIVER, CONFIG), e);
+		}
 	}
 }

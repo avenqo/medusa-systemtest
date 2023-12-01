@@ -8,6 +8,7 @@ import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 
+import com.avenqo.medusa.fe.selenium.test.util.PropertyProvider;
 import com.avenqo.medusa.fe.selenium.test.util.WebDriverProvider;
 
 import io.cucumber.java.After;
@@ -18,7 +19,12 @@ public class Hook {
 
 	static final Logger LOG = getLogger(lookup().lookupClass());
 
-	private static final String URL_STORE = "http://localhost:8000/store";
+	// i.e. "http://localhost:8000/store"
+	private final String URL_STORE;
+	
+	public Hook() {
+		URL_STORE = new PropertyProvider().getAutUrlAsString();
+	}
 	
 	/**
 	 * Runs before the first step of each scenario.

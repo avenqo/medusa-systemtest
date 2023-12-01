@@ -79,8 +79,8 @@ public class OrderConfirmationPage extends BasePage{
 
 			// pick up article properties
 			article.setName(prodElements.findElement(BY_NAME).getText());
-			article.setAnzahl(extractOptionValueByName("Quantity", prodElements.findElement(BY_ANZAHL).getText()));
-			article.setGesamtPreis(prodElements.findElement(BY_PRICE2).getText());
+			article.setNumber(extractOptionValueByName("Quantity", prodElements.findElement(BY_ANZAHL).getText()));
+			article.setSummaryPrice(prodElements.findElement(BY_PRICE2).getText());
 			// pickup article options
 			List<WebElement> options = prodElements.findElements(BY_OPTIONS);
 			if (options != null && options.size() > 0) {

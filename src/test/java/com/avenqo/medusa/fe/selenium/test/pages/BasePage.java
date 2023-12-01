@@ -5,13 +5,10 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 
 import com.avenqo.medusa.fe.selenium.test.elements.WE;
-import com.avenqo.medusa.fe.selenium.test.util.WebDriverProvider;
 
 class BasePage {
 	

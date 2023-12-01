@@ -45,14 +45,6 @@ public class WE {
 		return driver.findElement(by);
 	}
 	
-	/*
-	public WebDriverWait getWait() {
-		return getWait( null);
-	}
-	
-	public WebDriverWait getWait(Integer timeout_ms) {
-		return new WebDriverWait(driver, Duration.ofMillis(timeout_ms == null ? DEFAULT_TIMEOUT_MS : timeout_ms));
-	}*/
 	
 	/**
 	 * @param <T> You can use both By or WebElement
@@ -151,13 +143,16 @@ public class WE {
      */
     public <T> String getText(T elementAttr) {
     	LOG.info("WebElement: {}", elementAttr);
+    	String txt = null;
         if (isBy(elementAttr)) {
-            return driver
+            txt = driver
                 .findElement((By) elementAttr)
                 .getText();
         } else {
-            return ((WebElement) elementAttr).getText();
+            txt = ((WebElement) elementAttr).getText();
         }
+        LOG.info("returning: [{}]", elementAttr);
+        return txt;
     }
     
     
@@ -201,6 +196,4 @@ public class WE {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).build().perform();;
 	}
-	
-
 }

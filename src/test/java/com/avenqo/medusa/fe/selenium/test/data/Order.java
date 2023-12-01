@@ -10,6 +10,4 @@ public class Order {
 
 	String id;
 	List<OrderedArticle> articles = new ArrayList<>();
-	// i.e. Standard
-	String deliveryMethod;
 }

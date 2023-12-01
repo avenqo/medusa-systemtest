@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hamcrest.Matchers;
 import org.slf4j.Logger;
 
 import com.avenqo.medusa.be.api.test.OrderApi;
@@ -102,9 +101,9 @@ public class StoreFrontendSteps {
 			
 			//store for further usage
 			OrderedArticle orderedArticle = new OrderedArticle();
-			orderedArticle.setAnzahl(count);
+			orderedArticle.setNumber(count);
 			orderedArticle.setName(productDetailsPage.getProductName());
-			orderedArticle.setEinzelPreis(productDetailsPage.getPrice());
+			orderedArticle.setArticlePrice(productDetailsPage.getPrice());
 			orderedArticle.setColor(color);
 			orderedArticle.setSize(size);
 			order.getArticles().add(orderedArticle);
@@ -196,9 +195,9 @@ public class StoreFrontendSteps {
 			//proceed with option check
 			assertEquals(row.get("Color"), foundArticle.getColor());
 			assertEquals(row.get("Size"), foundArticle.getSize());
-			assertEquals(row.get("Anzahl"), foundArticle.getAnzahl());
-			assertEquals(row.get("Einzelpreis"), foundArticle.getEinzelPreis());
-			assertEquals(row.get("Gesamtpreis"), foundArticle.getGesamtPreis());
+			assertEquals(row.get("Anzahl"), foundArticle.getNumber());
+			assertEquals(row.get("Einzelpreis"), foundArticle.getArticlePrice());
+			assertEquals(row.get("Gesamtpreis"), foundArticle.getSummaryPrice());
 		}
 	}
 	

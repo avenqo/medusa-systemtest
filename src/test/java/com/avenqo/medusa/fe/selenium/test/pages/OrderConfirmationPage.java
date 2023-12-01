@@ -1,7 +1,6 @@
 package com.avenqo.medusa.fe.selenium.test.pages;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.util.ArrayList;
@@ -27,19 +26,7 @@ public class OrderConfirmationPage extends BasePage{
 
 	private static final By BY_DELIVERY = By.cssSelector("div.my-2:nth-of-type(2) > div > div");
 
-	// Ordered Product
-	private final static By BY_PROD_QUANTITY = By
-			.xpath("/html/body/main/div[2]/div/div/div[2]/div/div[2]/div/div/div[1]/span");
-	private final static By BY_PROD_SIZE = By
-			.xpath("/html/body/main/div[2]/div/div/div[2]/div/div[2]/div/div/div[1]/div/div/span");
-	private final static By BY_PROD_COLOR = By
-			.xpath("/html/body/main/div[2]/div/div/div[2]/div/div[2]/div/div/div[1]/div/div/span");
-	private final static By BY_PROD_NAME = By
-			.xpath("/html/body/main/div[2]/div/div/div[2]/div/div[2]/div/div/div[1]/h3/a");
-	              
-	private final static By BY_PROD_PRICE = By
-			.xpath("/html/body/main/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/div/span");
-	
+	// ordered product summary	
 	private final static By BY_SUM_SUBTOTAL = By
 			.xpath("/html/body/main/div[2]/div/div/div[3]/div[2]/div/div[1]/span[2]");
 	private final static By BY_SUM_DELIVERY = By
@@ -49,7 +36,6 @@ public class OrderConfirmationPage extends BasePage{
 	private final static By BY_SUM_TAX = By
 			.xpath("/html/body/main/div[2]/div/div/div[3]/div[2]/div/div[2]/div[2]/span[2]");
 
-	private static final String RETURNING = "Returning: {}";
 	private static final By BY_ORDERID = By.xpath("/html/body/main/div[2]/div/div/div[1]/span[2]");
 
 	public void waitUntilVisible() {
@@ -149,83 +135,31 @@ public class OrderConfirmationPage extends BasePage{
 		deliveryAddress.setCityCode(spans.get(2).getText());
 		deliveryAddress.setCountry(spans.get(3).getText());
 
-		deliveryAddress.setDeliveryMethod(we.find(BY_DELIVERY).getText());
+		deliveryAddress.setDeliveryMethod(we.getText(BY_DELIVERY));
 
 		return deliveryAddress;
 	}
 
-	// overview
-	
-	public String getArticle() {
-		String s = we.find(BY_PROD_NAME).getText();
-		LOG.info(RETURNING, s);
-		return s;
-	}
-
-	public String getSize() {
-		String s = we.find(BY_PROD_SIZE).getText();
-		s = s.substring(s.indexOf(":") + 1).trim();
-		LOG.info(RETURNING, s);
-		return s;
-	}
-	
-	public String getColor() {
-		String s = we.find(BY_PROD_COLOR).getText();
-		s = s.substring(s.indexOf(":") + 1).trim();
-		LOG.info(RETURNING, s);
-		return s;
-	}
-
-	public String getCount() {
-		String s = we.find(BY_PROD_QUANTITY).getText();
-		s = s.substring(s.indexOf(":") + 1).trim();
-		LOG.info(RETURNING, s);
-		return s;
-	}
-
-	public String getPrice() {
-		String s = we.find(BY_PROD_PRICE).getText();
-		LOG.info(RETURNING, s);
-		return s;
-	}
-	
 	// summary
 
-	
 	public String getTax() {
-		String s = we.find(BY_SUM_TAX).getText();
-		s = StringUtils.isBlank(s) ? null : s;
-		
-		LOG.info(RETURNING, s);
-		return s;
+		String s = we.getText(BY_SUM_TAX);
+		return StringUtils.isBlank(s) ? null : s;
 	}
-	
+
 	public String getTotal() {
-		String s = we.find(BY_SUM_TOTAL).getText();
-		LOG.info(RETURNING, s);
-		return s;
+		return we.getText(BY_SUM_TOTAL);
 	}
 
 	public String getSubtotal() {
-		String s = we.find(BY_SUM_SUBTOTAL).getText();
-		LOG.info(RETURNING, s);
-		return s;
+		return we.getText(BY_SUM_SUBTOTAL);
 	}
 
 	public String getDeliveryPrice() {
-		String s = we.find(BY_SUM_DELIVERY).getText();
-		LOG.info(RETURNING, s);
-		return s;
+		return we.getText(BY_SUM_DELIVERY);
 	}
 
 	public String getOrderId() {
-		String s = we.find(BY_ORDERID).getText();
-		assertNotNull(s);
-		LOG.info(RETURNING, s);
-		return s;
+		return we.getText(BY_ORDERID);
 	}
-	
-	
-	
-	
 }

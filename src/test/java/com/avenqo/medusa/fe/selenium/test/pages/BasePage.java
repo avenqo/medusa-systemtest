@@ -16,9 +16,9 @@ class BasePage {
 	
 	protected final static WE we = new WE();
 	
-
-	protected WebDriverWait createWebDriverWait(int timeout_sec) {
+	protected static final String RETURNING = "Returning: [{}]";
 	
+	protected WebDriverWait createWebDriverWait(int timeout_sec) {
 		return new WebDriverWait(we.getDriver(), Duration.ofSeconds(timeout_sec));
 	}
 

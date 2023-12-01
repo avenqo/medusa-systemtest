@@ -156,7 +156,6 @@ public class StoreFrontendSteps {
 		assertEquals(address.getCity() + ", " + address.getCode(), deliveryAddress.getCityCode());
 		assertTrue(deliveryAddress.getDeliveryMethod().contains(DELIVERY_STANDARD));
 		
-
 		String id = orderConfirmationPage.getOrderId();
 		assertTrue(StringUtils.isNotBlank(id));
 		TestDataProvider.get().getCurrentOrder().setId("order_" + id);
@@ -210,47 +209,4 @@ public class StoreFrontendSteps {
 		assertEquals(items.get("Gesamtkosten"), orderConfirmationPage.getTotal());
 		assertEquals(items.get("Steuer"), orderConfirmationPage.getTax());
 	}
-/*
- * 
- * 
-	@Given("ich wähle das Produkt {string}")
-	public void ich_waehle_das_produkt(String productName) {
-		LOG.debug(STEP);
-		landingPage.selectProductByName(productName);
-		productDetailsPage.waitUntilVisible();
-	}
-	
-	@Given("ich lege das selektierte Produkt in den Warenkorb")
-	public void ich_lege_das_selektierte_produkt_in_den_warenkorb() {
-		LOG.debug(STEP);
-		productDetailsPage.addToCart();
-		navigationBar.waitUntilBagIsContainingItems(1);
-	}
-	
-
-	@Then("sehe ich die Bestellbestätigung")
-	public void sehe_ich_die_bestellbestätigung() {
-		LOG.debug(STEP);
-		orderConfirmationPage.waitUntilVisible();
-		TestDataProvider.get().initOrder();
-		
-		String id = orderConfirmationPage.getOrderId();
-		assertThat (id, not(emptyOrNullString()));
-		TestDataProvider.get().getCurrentOrder().setId("order_" + id);
-	}
-
-	@Then("die Bestellbestätigung enthält meine Kundendaten")
-	public void die_bestellbestätigung_enthält_meine_kundendaten() {
-		LOG.debug(STEP);
-		DeliveryAddress deliveryAddress = orderConfirmationPage.getDeliveryAddress();
-		Customer currentCustomer = TestDataProvider.get().getCurrentCustomer();
-		assertEquals(currentCustomer.getFirstName() + " " + currentCustomer.getLastName(), deliveryAddress.getName());
-
-		Address address = currentCustomer.getAddress();
-		assertEquals(address.getStreet(), deliveryAddress.getAddress());
-		assertEquals(address.getCity() + ", " + address.getCode(), deliveryAddress.getCityCode());
-		assertTrue(deliveryAddress.getDeliveryMethod().contains(DELIVERY_STANDARD));
-	}
-
-	*/
 }

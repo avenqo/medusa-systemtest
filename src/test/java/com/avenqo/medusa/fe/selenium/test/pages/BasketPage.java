@@ -15,7 +15,7 @@ public class BasketPage extends BasePage{
 	
 	public void checkout() {
 		LOG.info("");
-		//click title to close hoovered frame
+		//click title to close hover frame
 		we.click(BY_CONTAINER);
 		
 		we.click(BY_LINK_CHECKOUT);

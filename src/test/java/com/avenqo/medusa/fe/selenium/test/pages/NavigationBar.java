@@ -36,7 +36,4 @@ public class NavigationBar extends BasePage {
 		LOG.info("itemSize: [{}]");
 		we.createWebDriverWaitSec(10).until(i -> getNumberOfArticlesInBasket() == itemSize);
 	}
-
-	
-	
 }

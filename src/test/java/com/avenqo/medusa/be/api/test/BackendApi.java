@@ -42,7 +42,7 @@ class BackendApi {
         	.statusCode(200)
         	.extract().cookie("connect.sid");
 		
-		System.out.println("Cookie 1 '" + cookie + "'");
+		//System.out.println("Cookie 1 '" + cookie + "'");
 		
 		return new Cookie.Builder("connect.sid", cookie)
 			      .setSecured(true)

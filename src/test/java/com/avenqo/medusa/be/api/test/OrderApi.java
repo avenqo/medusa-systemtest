@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.http.Cookie;
 import io.restassured.response.ValidatableResponse;
 
 /**
@@ -13,12 +14,14 @@ public class OrderApi extends BackendApi{
 
 	public ValidatableResponse getOrderById(String orderId) {
 
-		System.out.println("Cookie 2 '" + super.getAuthCookie().getValue() + "'");
+		Cookie cookie = super.getAuthCookie();
+		
+		// System.out.println("Cookie 2 '" + cookie.getValue() + "'");
 		
 		return RestAssured
 			.given()
 		        .contentType(ContentType.JSON)
-		        .cookie(super.getAuthCookie())
+		        .cookie(cookie)
 		        
 		        .log().all()
 

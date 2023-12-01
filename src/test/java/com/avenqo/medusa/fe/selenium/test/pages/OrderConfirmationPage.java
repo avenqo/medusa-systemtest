@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Wait;
 import org.slf4j.Logger;
 
 import com.avenqo.medusa.fe.selenium.test.data.DeliveryAddress;
@@ -20,10 +22,8 @@ public class OrderConfirmationPage extends BasePage{
 	
 	private static final By BY_CONFIRMATION_MSG = By
 			.xpath("//span[text()='Thank you, your order was successfully placed']");
-	// private static final By BY_CUSTOMER = By.cssSelector("div.my-2 > div >
-	// span");
-	private static final By BY_CUSTOMER = By.cssSelector("div.my-2 > div:nth-of-type(1) > span");
-
+	
+	private static final By BY_CUSTOMER_ADDRESS = By.xpath("/html/body/main/div[2]/div/div/div[3]/div[1]/div[1]/div/span");
 	private static final By BY_DELIVERY = By.cssSelector("div.my-2:nth-of-type(2) > div > div");
 
 	// ordered product summary	
@@ -128,7 +128,11 @@ public class OrderConfirmationPage extends BasePage{
 		LOG.info("");
 		DeliveryAddress deliveryAddress = new DeliveryAddress();
 
-		List<WebElement> spans = we.findElements(BY_CUSTOMER);
+		// wait until list is loaded
+		Wait<WebDriver> wait = we.createWebDriverWaitMs(2000);
+		wait.until(d -> we.findElements(BY_CUSTOMER_ADDRESS).size() > 0);
+
+		List<WebElement> spans = we.findElements(BY_CUSTOMER_ADDRESS);
 
 		deliveryAddress.setName(spans.get(0).getText());
 		deliveryAddress.setAddress(spans.get(1).getText());

@@ -8,7 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class WebDriverProvider {
+class WebDriverProvider {
 	
 	private static WebDriver driver;
 	private static WebDriverProvider webDriverProvider;

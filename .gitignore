@@ -10,3 +10,4 @@ org.eclipse.m2e.core.prefs
 **/.DS_Store
 **/*.bak/
 todo.txt
+/pom2.xml

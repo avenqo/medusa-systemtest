@@ -10,6 +10,7 @@ import org.junit.platform.suite.api.Suite;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.avenqo.medusa.fe.selenium.test.steps")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, 
+	value = "com.avenqo.web.test.facility.glue, com.avenqo.medusa.fe.selenium.test.steps")
 public class TestRunner {
 }

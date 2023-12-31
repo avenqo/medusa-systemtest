@@ -8,6 +8,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
@@ -29,11 +30,22 @@ public class LandingPage extends BasePage {
 		assertNotNull(productLinks, errMsg);
 		assertTrue(productLinks.size() > 0, errMsg);
 		assertTrue(productLinks.size() < 2, "Product [' + productname+ '] isn't unique");
-		productLinks.get(0).click();
+		
+		// required by Firefox
+		// productLinks.get(0).click();
+		we.jsClick(productLinks.get(0));
 
-		we.createWebDriverWaitSec(2).until(ExpectedConditions.elementToBeClickable(productLinks.get(0)));
-		productLinks.get(0).click();
-
+		try {
+			we.createWebDriverWaitSec(2).until(ExpectedConditions.elementToBeClickable(productLinks.get(0)));
+        } catch(StaleElementReferenceException e) {
+        	// this happens in Firefox
+        	productLinks = we.findElements(BY_PRODUCTS);
+        	we.createWebDriverWaitSec(2).until(ExpectedConditions.elementToBeClickable(productLinks.get(0)));
+        }
+		
+		// required by Firefox
+		// productLinks.get(0).click();
+		we.jsClick(productLinks.get(0));
 	}
 
 	public void waitUntilVisible() {

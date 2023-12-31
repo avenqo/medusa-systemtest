@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 
-import com.avenqo.medusa.fe.selenium.test.util.WebDriverProvider;
+import com.avenqo.web.test.facility.drivers.WebDriverProvider;
 
 /**
  * This class represents a WebElement. There are 2 intentions of this class:

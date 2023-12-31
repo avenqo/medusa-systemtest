@@ -16,6 +16,13 @@ public class NavigationBar extends BasePage {
 	public void gotoStore() {
 		LOG.info("");
 		we.find(BY_STORE).click();
+		
+		try {
+			  Thread.sleep(5000);
+			} catch (InterruptedException e) {
+			  Thread.currentThread().interrupt();
+			}
+		
 		we.clickWithOffset(BY_STORE, 200, 0);
 	}
 	

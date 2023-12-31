@@ -2,9 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.avenqo</groupId>
+	<groupId>com.avenqo.medusa.fe.selenium.test</groupId>
 	<artifactId>medusa.fe.selenium.test</artifactId>
 	<version>0.0.1</version>
+	<name>Demo Medusa Test Project</name>
+	<description>Demo Medusa WebTest project using Cucumber and Selenium</description>
 
 	<properties>
 		<json.version>20230618</json.version>
@@ -14,6 +16,7 @@
 		<lombok.version>1.18.30</lombok.version>
 		<slf4j.version>2.0.9</slf4j.version>
 		<logback.version>1.4.11</logback.version>
+		<org.fusesource.jansi>2.4.1</org.fusesource.jansi>
 
 		<junit-jupiter.version>5.10.1</junit-jupiter.version>
 		<junit-platform-suite.version>1.10.1</junit-platform-suite.version>
@@ -33,6 +36,11 @@
 
 	<dependencies>
 		<dependency>
+		<groupId>com.avenqo.web.test.facility</groupId>
+			<artifactId>web.test.facility</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>${json.version}</version>
@@ -44,16 +52,29 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-text</artifactId>
-			<version>${commons.text.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.fusesource.jansi</groupId>
+			<artifactId>jansi</artifactId>
+			<version>${org.fusesource.jansi}</version>
+		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.15.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>${commons.text.version}</version>
+		</dependency>
+		
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -70,11 +91,7 @@
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium.java.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -105,6 +122,7 @@
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
+		-->
 	</dependencies>
 
 	<build>

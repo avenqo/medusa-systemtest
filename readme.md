@@ -1,14 +1,27 @@
 # Medusa Demo Testautomation with Selenium and Cucumber
 ## Introduction
-This project shows how to automate tests using Selenium and Cucumber.
+This project shows how to automate tests using Selenium Webdriver in combination with Cucumber.
 
 ## How to run
 ### Precondition
 As a precondition, this project requires an running instance of Medusa Online Shop (backend and frontend) as described in the related [documentation](https://docs.medusajs.com/).
 
 The test client expects the Medusa application-under-test (AUT) running on 
-- frontend: localhost:8000
+- Frontend: localhost:8000/store
+- Backend: localhost:9000/app
 - REST API: localhost:9000
+
+### Configure the test
+This project was successfully tested with Chrome and Firefox.
+
+```
+# Driver Type: chrome, safari, edge, firefox
+driver=chrome
+#local or remote WebDriver
+environment=local
+# Initial url of the AUT web interface being loaded on start
+AUT_URL=http://localhost:8000/store
+```
 
 ### Start the test
 The full test can be started using [Maven](https://maven.apache.org) by command:

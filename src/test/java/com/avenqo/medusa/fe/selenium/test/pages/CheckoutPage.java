@@ -67,7 +67,7 @@ public class CheckoutPage extends BasePage{
 
 	public void pushCheckout() {
 		LOG.info("");
-		we.click(BY_BTN_CHECKOUT);
+		we.jsClick(BY_BTN_CHECKOUT);
 	}
 
 	private void clearAndEnter(WebElement input, String txt) {

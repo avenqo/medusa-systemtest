@@ -1,22 +1,7 @@
 package com.avenqo.medusa.fe.selenium.test.steps;
 
-import static java.lang.invoke.MethodHandles.lookup;
-import static org.slf4j.LoggerFactory.getLogger;
-
-import java.time.Duration;
-
-import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-
-import com.avenqo.medusa.fe.selenium.test.util.PropertyProvider;
-import com.avenqo.medusa.fe.selenium.test.util.WebDriverProvider;
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
-
 public class Hook {
-
+/*
 	static final Logger LOG = getLogger(lookup().lookupClass());
 
 	// i.e. "http://localhost:8000/store"
@@ -28,7 +13,7 @@ public class Hook {
 	
 	/**
 	 * Runs before the first step of each scenario.
-	 */
+	 * /
 	@Before
 	public void createDriver() {
 		LOG.info("");
@@ -42,10 +27,49 @@ public class Hook {
 	 * failed, undefined, pending, or skipped.
 	 * 
 	 * @param scenario
-	 */
+	 * /
 	@After
 	public void deleteDriver(Scenario scenario) {
 		LOG.info("");
 		WebDriverProvider.quitDriver();
 	}
+	
+	
+	@After
+	public void afterScenario(Scenario scenario) throws Throwable {
+		LOG.info("Scenario '{}' [Feature '{}']", scenario.getName(), scenario.getId());
+
+		String featureName = scenario.getId();
+		if (scenario.isFailed()) {
+			LOG.error("Creating screenshot for feature '{}' and scenario '{}'.", featureName, scenario.getName());
+
+			
+			
+			try {
+				String fName = TEnv.getDeviceName();
+			
+				ScreenShotMaker ssm = new ScreenShotMaker(TEnv.getDriver4CurrentTEnvConfig());
+				ssm.createPageSourceShot(fName);
+				ssm.createScreenshot(fName);
+
+				/*
+				 * File srcFile = appiumDriver.getScreenshotAs(OutputType.FILE);
+				 * 
+				 * byte[] screenshot = ((TakesScreenshot)
+				 * driver).getScreenshotAs(OutputType.BYTES); String testName =
+				 * scenario.getName(); scenario.embed(screenshot, "image/png");
+				 * scenario.write(testName);
+				 * /
+			} catch (Exception ex) {
+				LOG.error("Screenshot creation failed.", ex);
+				throw ex;
+			}
+
+		} else {
+			LOG.info("------------------------------------------------------------------------");
+			LOG.info("Finished: Feature '{}' and scenario '{}'.", featureName, scenario.getName());
+			LOG.info("========================================================================");
+		}
+	}
+	*/
 }

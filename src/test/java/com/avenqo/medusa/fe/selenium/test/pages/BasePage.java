@@ -8,7 +8,7 @@ import java.time.Duration;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 
-import com.avenqo.medusa.fe.selenium.test.elements.WE;
+import com.avenqo.testfacility.element.web.WE;
 
 class BasePage {
 	
